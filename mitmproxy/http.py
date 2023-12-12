@@ -378,7 +378,7 @@ class Message(serializable.Serializable):
             # don't set content-length if a transfer-encoding is provided
             pass
         else:
-            self.headers["content-length"] = str(len(self.raw_content))
+            self.headers.setdefault("content-length", str(len(self.raw_content)))
 
     def get_content(self, strict: bool = True) -> bytes | None:
         """
